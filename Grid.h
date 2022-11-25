@@ -119,40 +119,11 @@ struct Grid{
         return &this->field[i];
     };
 
-    int recalculate_cell_count(int i, int j) {
-        int count = 0;
-        for (int p = -1; p < 2; p++) {
-            for (int q = -1; q < 2; q++) {
-                if ((0 <= (i + p) && (i + p) < y_size && 0 <= (j + q) && (j + q) < x_size && p+p + q*q != 0) &&
-                    (field[(i + p)*x_size + (j + q)]).state == 1) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    };
+    virtual int recalculate_cell_count(int i, int j)  {return 0;};
 
-    void recalculate_field_count() {
-        for (int i = 0; i < y_size; i++) {
-            for (int j = 0; j < x_size; j++) {
-                field[i*x_size + j].count_1 = recalculate_cell_count(i, j);
-            }
-        }
-    }
+    virtual void recalculate_field_count() {};
 
-    void recalculate_field_state() {
-        for (int i = 0; i < y_size; i++) {
-            for (int j = 0; j < x_size; j++) {
-                int tmp_state = field[i*x_size + j].state;
-                int tmp_count = field[i*x_size + j].count_1;
-                if (tmp_state) {
-                    if (tmp_count != 2 && tmp_count != 3) {field[i*x_size + j].state = 0;}
-                } else {
-                    if (tmp_count == 3) {field[i*x_size + j].state = 1;}
-                }
-            }
-        }
-    }
+    virtual void recalculate_field_state() {};
 
     void step() {
         this->recalculate_field_count();
@@ -170,12 +141,39 @@ struct Grid_1c: Grid{
         delete [] field;
     };
 
+    int recalculate_cell_count(int i, int j) override {
+        int count = 0;
+        for (int p = -1; p < 2; p++) {
+            for (int q = -1; q < 2; q++) {
+                if ((0 <= (i + p) && (i + p) < y_size && 0 <= (j + q) && (j + q) < x_size && p+p + q*q != 0) &&
+                    (field[(i + p)*x_size + (j + q)]).state == 1) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    };
 
+    void recalculate_field_count() override{
+        for (int i = 0; i < y_size; i++) {
+            for (int j = 0; j < x_size; j++) {
+                field[i*x_size + j].count_1 = recalculate_cell_count(i, j);
+            }
+        }
+    }
 
-
-
-
-
-
-
+    void recalculate_field_state() override{
+        for (int i = 0; i < y_size; i++) {
+            for (int j = 0; j < x_size; j++) {
+                int tmp_state = field[i*x_size + j].state;
+                int tmp_count = field[i*x_size + j].count_1;
+                if (tmp_state) {
+                    if (tmp_count != 2 && tmp_count != 3) {field[i*x_size + j].state = 0;}
+                } else {
+                    if (tmp_count == 3) {field[i*x_size + j].state = 1;}
+                }
+            }
+        }
+    }
 };
+

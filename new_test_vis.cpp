@@ -28,6 +28,9 @@ int main() // начало главной функции main()
                 char pixel = ' ';
                 if (w < g.x_size && h< g.y_size){
                     if(g.field[h*g.x_size + w].state == 1){pixel='@';};
+                    if(g.field[h*g.x_size + w].state == 2){pixel='%';};
+                    if(g.field[h*g.x_size + w].state == 3){pixel='W';};
+                    if(g.field[h*g.x_size + w].state == 4){pixel='O';};
                 };
                 screen[w + h*width] = pixel;
             };
@@ -37,7 +40,7 @@ int main() // начало главной функции main()
             std::cout << screen[i];
         }*/
         cout << screen; // выводим на экран массив screen
-        usleep(500000);
+        usleep(700000);
         //cin.get(); // wait
         //
         };

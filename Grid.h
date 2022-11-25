@@ -203,6 +203,7 @@ struct Grid_2c: Grid{
         for (int i = 0; i < y_size; i++) {
             for (int j = 0; j < x_size; j++) {
                 field[i*x_size + j].count_1 = recalculate_cell_count(i, j, 1);
+                field[i*x_size + j].count_2 = recalculate_cell_count(i, j, 2);
             }
         }
     }
@@ -211,11 +212,18 @@ struct Grid_2c: Grid{
         for (int i = 0; i < y_size; i++) {
             for (int j = 0; j < x_size; j++) {
                 int tmp_state = field[i*x_size + j].state;
-                int tmp_count = field[i*x_size + j].count_1;
+                int tmp_count_1 = field[i*x_size + j].count_1;
+                int tmp_count_2 = field[i*x_size + j].count_2;
+                int tmp_count = tmp_count_1 + tmp_count_2;
                 if (tmp_state) {
                     if (tmp_count != 2 && tmp_count != 3) {field[i*x_size + j].state = 0;}
                 } else {
-                    if (tmp_count == 3) {field[i*x_size + j].state = 1;}
+                    if (tmp_count == 3) {
+                        if (tmp_count_1 > tmp_count_2){field[i*x_size + j].state = 1;}
+                        else {field[i*x_size + j].state = 2;}
+
+
+                    }
                 }
             }
         }

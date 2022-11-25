@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string>
 #include "Grid.h"
+
 //#include "export.h"
 
 

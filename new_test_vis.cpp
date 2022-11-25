@@ -9,11 +9,13 @@ HANDLE  hConsole;
 int color;
 
 
+
 int main() // начало главной функции main()
 {
+
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    Grid_1c g("pulsar.txt");
-    int steps = 10000000;
+    Grid_1c g("big.txt");
+    int steps = 100000;
 
     // инициализация переменных, которые являются неким разрешением консоли (количество символов, которое помещается в консоли)
     int width = 120;
@@ -40,7 +42,7 @@ int main() // начало главной функции main()
             std::cout << screen[i];
         }*/
         cout << screen; // выводим на экран массив screen
-        usleep(700000);
+        usleep(400000);
         //cin.get(); // wait
         //
         };

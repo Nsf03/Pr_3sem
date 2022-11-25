@@ -12,7 +12,7 @@ struct Cell{
     int count_8;
 
     explicit
-    Cell(int state = 0) : state(state), count_1(0) {};
+    Cell(int state = 0) : state(state), count_1(0), count_2(0), count_3(0), count_4(0){};
 
     Cell(const Cell &c) = default;
     Cell& operator=(const Cell &c) = default;

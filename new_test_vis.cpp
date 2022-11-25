@@ -12,7 +12,7 @@ int color;
 int main() // начало главной функции main()
 {
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    Grid g("pulsar.txt");
+    Grid_1c g("pulsar.txt");
     int steps = 10000000;
 
     // инициализация переменных, которые являются неким разрешением консоли (количество символов, которое помещается в консоли)

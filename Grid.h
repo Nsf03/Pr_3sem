@@ -1,13 +1,12 @@
 
 
+#include <utility>
+
 #include "Config_Import.h"
 #include "Cell.h"
 
-class Grid{
+struct Grid{
 
-private:
-
-public:
     int x_size;
     int y_size;
     Cell* field;
@@ -16,6 +15,8 @@ public:
         field = new Cell[x_size*y_size];
         for (int i = 0; i < x_size*y_size; i++) {field[i] = Cell(state);}
     };
+
+    Grid() {};
 
     Grid(std::string path) {
         int* file = Config_Import::file(path);
@@ -48,7 +49,9 @@ public:
             g.field = nullptr;
             field = tmp;
         }
-    };
+    }
+
+
     Grid& operator=(Grid &&g) {
         if (this == &g) {
             return *this;
@@ -155,4 +158,24 @@ public:
         this->recalculate_field_count();
         this->recalculate_field_state();
     }
+};
+
+struct Grid_1c: Grid{
+
+    Grid_1c(int x_size, int y_size, int state = 0): Grid(x_size, y_size, 0){}
+
+    Grid_1c(std::string path): Grid(std::move(path)){} //+
+
+    ~Grid_1c() {
+        delete [] field;
+    };
+
+
+
+
+
+
+
+
+
 };

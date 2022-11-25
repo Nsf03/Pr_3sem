@@ -12,9 +12,8 @@ int color;
 
 int main() // начало главной функции main()
 {
-
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    Grid_1c g("big.txt");
+    Grid_1c g("gun.txt");
     int steps = 100000;
 
     // инициализация переменных, которые являются неким разрешением консоли (количество символов, которое помещается в консоли)
@@ -42,7 +41,7 @@ int main() // начало главной функции main()
             std::cout << screen[i];
         }*/
         cout << screen; // выводим на экран массив screen
-        usleep(400000);
+        usleep(100000);
         //cin.get(); // wait
         //
         };

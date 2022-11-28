@@ -1,9 +1,4 @@
-#include <iostream>
-#include <string>
 #include "Grid.h"
-
-//#include "export.h"
-
 
 class Life {
 private:
@@ -15,9 +10,3 @@ public:
         }
     }
 };
-
-int main() {
-    Grid g("example.txt");
-    Life::create(g, 100);
-    return 0;
-}

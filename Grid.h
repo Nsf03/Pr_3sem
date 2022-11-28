@@ -1,14 +1,13 @@
 
 
 #include <utility>
-
 #include "Config_Import.h"
 #include "Cell.h"
 
 struct Grid{
 
-    int x_size;
-    int y_size;
+    unsigned int x_size;
+    unsigned int y_size;
     Cell* field;
     explicit
     Grid(int x_size, int y_size, int state = 0) : x_size(x_size), y_size(y_size) {
